@@ -1,0 +1,70 @@
+html, body { 
+	margin: 0; 
+	padding: 0; 
+	height: 100%; 
+	width: 100%; 
+	background-color: #2B302A; 
+	color: #8AD48E;  
+	-webkit-text-stroke-color: #68A567;
+	-webkit-text-stroke-width: 1px;
+	text-shadow: 0 0 5px #2D652B;
+	font-size: 24px;
+}
+
+#wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.interlace-line { 
+	position: absolute; 
+	left: 0; 
+	right: 0; 
+	height: 2px; 
+	background-color: black; 
+	margin: 0; 
+	padding: 0; 
+}
+
+#instruction-wrap {
+	padding:30px;
+	text-align: center;
+}
+#screen {
+	width: 900px;
+	margin: 0 auto;
+	height: 0;
+	transition: height 0.5s;
+	overflow: hidden;
+}
+.pixel-wrap {
+	border: solid 2px #4A944E;
+	float: left;
+	margin: 0 4px 4px 0;
+}
+
+.pixel {
+	background-color: #8AD48E;
+	opacity: 0;
+	transition: opacity 0.2s;
+	width: 12px;
+	height: 12px;
+	margin: 2px;
+}
+.pixel.lit { 
+	opacity: 1; 
+}
+
+#answer-label {
+	padding-right: 10px; 
+	float:left; 
+	width: 50%; 
+	text-align: right;
+}
+#answer {
+	padding-left: 10px; 
+	margin-left: 50%; 
+}
