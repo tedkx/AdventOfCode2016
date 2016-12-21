@@ -4,19 +4,23 @@ using System.Text.RegularExpressions;
 
 class ExplosivesInCyberspace {
   
-  public static int GetDecompressedLength(string input) {
-    var decompressed = string.Empty;
+  public static long GetDecompressedLength(string input) {
+    long length = 0;
     while(true) {
       var parts = input.Split(new char[] { '(', ')' }, 3);
-      if(parts.Length < 3)
-        return (decompressed + parts[0]).Replace(" ", "").Length;
-
+      if(parts.Length == 2)
+        throw new Exception("Found 2 parts. Ideally this should not happen. Input is " + input);
+      if(parts.Length == 1)
+        return length + parts[0].Replace(" ", "").Length;
+        
       var parameters = Array.ConvertAll(parts[1].Split('x'), int.Parse);
-      decompressed += parts[0] + string.Join("", System.Linq.Enumerable.Range(1, parameters[1])
-        .Select(r => parts[2].Substring(0, parameters[0])));
+      length += parts[2].Contains('(') || parts[2].Contains(')')
+        ? parts[0].Length + parameters[1] * GetDecompressedLength(parts[2].Substring(0, parameters[0]))
+        : parts[0].Length + parameters[0] * parameters[1];
+
       input = parts[2].Substring(parameters[0]);
     }
-    return 0;
+    return length;
   }
   
   public static void Main (string[] args) {
